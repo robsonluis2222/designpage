@@ -10,7 +10,9 @@ function ChatPage(){
     let msg = '';
 
   useEffect(() => {
-    fetchFileContent();
+    const intervalId = setInterval(() => {
+        fetchFileContent(); // Chama a função para buscar os dados da API
+      }, 5000);
   }, []);
 
   const handleClick = () => {
