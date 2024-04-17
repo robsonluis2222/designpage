@@ -8,6 +8,16 @@ function ChatPage(){
     const [urlSend, setUrlSend] = useState('');
     const url = 'https://backendchat.000webhostapp.com/add.php';
     let msg = '';
+    const [userName, setUserName] = useState('');
+
+    const askForName = () => {
+        const name = window.prompt('Por favor, digite seu nome:');
+        if (name) {
+        setUserName(name);
+        } else {
+        alert('Por favor, insira um nome válido.');
+        }
+    };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -21,11 +31,14 @@ function ChatPage(){
   };
 
   async function sendNewMensage(inputValue){
+    if(!userName){
+        return window.alert("Defina um nome !");
+    }
     if(!inputValue) {
         return window.alert("Campo de mensagem está vazio !");
     }
     let newMsg = `${inputValue}`;
-    const urlSend = `${url}?data=${newMsg}`;
+    const urlSend = `${url}?data=${userName}: ${newMsg}`;
     console.log(urlSend);
     try{
         await fetch(urlSend); // Caminho relativo para o arquivo de texto
@@ -61,6 +74,7 @@ function ChatPage(){
                     required
                 />
                 <button onClick={handleClick}>Enviar</button>
+                <button onClick={askForName}>Definir nome</button>
             </div>
             </div>
         </div>
