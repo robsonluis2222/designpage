@@ -16,11 +16,12 @@ function Login(){
     const handleButtonClick = () => {
         // Aqui você pode fazer o que quiser com o valor do input
         console.log('Valor do input:', inputValue);
-        if(inputValue != "leite"){
+        if(inputValue != "Leite" && inputValue != "leite" && inputValue != ""){
             window.alert("Você não é integrante dessa família !")
             setLinker("/");
         } else{
             setLinker("/chat");
+            window.alert("Agora clique em Ingressar novamente para acessar o chat !")
         }
         // Limpar o input
         setInputValue('');
